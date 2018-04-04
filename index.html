@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>three.js webgl - particles</title>
+		<title>Particles</title>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
 		<style>
@@ -20,23 +20,12 @@
 				color:#0078ff;
 			}
 
-			#info {
-				color: #fff;
-				position: absolute;
-				top: 0px; width: 100%;
-				padding: 5px;
-				z-index: 100;
-			}
-
 		</style>
 	</head>
 	<body>
 
-		<div id="info">
-		</div>
-
 		<script src="js/three.js"></script>
-    <script src="js/controls/TrackballControls.js"></script>
+                <script src="js/controls/TrackballControls.js"></script>
 		<script src="js/Detector.js"></script>
 
 		<script>
@@ -62,7 +51,7 @@
 				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
 				camera.position.z = 3000;
 
-        controls = new THREE.TrackballControls( camera );
+                                controls = new THREE.TrackballControls( camera );
 
 				controls.rotateSpeed = 1.0;
 				controls.zoomSpeed = 2.2;
@@ -79,14 +68,14 @@
 				controls.addEventListener( 'change', render );
 
 				scene = new THREE.Scene();
-				//scene.fog = new THREE.FogExp2( 0x000000, 0.0004 );
+				scene.fog = new THREE.FogExp2( 0x000000, 0.0003 );
 
 				light = new THREE.AmbientLight( 0xFFFFFF ); // soft white light
 				scene.add( light );
 
 				geometry = new THREE.Geometry();
 
-				for ( i = 0; i < 100000; i ++ ) {
+				for ( i = 0; i < 300000; i ++ ) {
 
 					var vertex = new THREE.Vector3();
 
@@ -108,40 +97,7 @@
 						vertexColors: THREE.VertexColors
 					}));
 
-/*
-				particles.rotation.x = Math.random() * 6;
-				particles.rotation.y = Math.random() * 6;
-				particles.rotation.z = Math.random() * 6;
-*/
-
 				scene.add( particles );
-
-/*
-				parameters = [
-					[ [1, 1, 1], 10.1 ],
-					[ [0.7, 0.7, 0.7], 10.1 ],
-					[ [0.5, 0.5, 0.5], 10.1 ],
-					[ [0.3, 0.3, 0.3], 10.1 ],
-					[ [0.1, 0.1, 0.1], 10.1 ]
-				];
-
-				for ( i = 0; i < parameters.length; i ++ ) {
-
-					color = parameters[i][0];
-					size  = parameters[i][1];
-
-					materials[i] = new THREE.PointsMaterial( { size: size } );
-					materials[i].color.setHSL(color[0], color[1], color[2]);
-
-					particles = new THREE.Points( geometry, materials[i] );
-
-					particles.rotation.x = Math.random() * 2*Math.PI;
-					particles.rotation.y = Math.random() * 2*Math.PI;
-					particles.rotation.z = Math.random() * 2*Math.PI;
-
-					scene.add( particles );
-				}
-*/
 
 				renderer = new THREE.WebGLRenderer();
 
@@ -169,7 +125,7 @@
 
 			function animate() {
 				requestAnimationFrame( animate );
-        controls.update();
+                                controls.update();
 				render();
 			}
 
